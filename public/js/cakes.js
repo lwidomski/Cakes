@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -61502,20 +61502,21 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Cake.js":
-/*!*****************************************!*\
-  !*** ./resources/js/components/Cake.js ***!
-  \*****************************************/
+/***/ "./resources/js/components/Cakes.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/Cakes.js ***!
+  \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Cake; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Cakes; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Thumbnail_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Thumbnail.js */ "./resources/js/components/Thumbnail.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -61526,9 +61527,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -61537,87 +61538,91 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var Cake =
+
+var Cakes =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Cake, _Component);
+  _inherits(Cakes, _Component);
 
-  function Cake(props) {
+  function Cakes(props) {
     var _this;
 
-    _classCallCheck(this, Cake);
+    _classCallCheck(this, Cakes);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Cake).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Cakes).call(this, props));
     _this.state = {
-      id: props.id,
       apiurl: props.apiurl,
-      cakeData: []
+      cakesData: []
     };
+    _this.renderThumbnail = _this.renderThumbnail.bind(_assertThisInitialized(_this));
+    _this.renderAdd = _this.renderAdd.bind(_assertThisInitialized(_this));
+    _this.redirect = _this.redirect.bind(_assertThisInitialized(_this));
     return _this;
-  } //when component mounts, this is the first function that gets called
+  } // when component mounts, this is the first function that gets called
 
 
-  _createClass(Cake, [{
+  _createClass(Cakes, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
 
-      //first we obtain data about our cake
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(this.state.apiurl + "/cakes/" + this.state.id).then(function (response) {
-        console.log(response.data); // we save the data into our state variable
-
+      //first we obtain data about our cakes
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(this.state.apiurl + "/cakes").then(function (response) {
+        // console.log(response.data);
+        // we save the data into our state variable
         _this2.setState({
-          cakeData: response.data
+          cakesData: response.data
         });
       })["catch"](function (error) {
         console.log(error);
       });
+    } // render a react component
+
+  }, {
+    key: "renderThumbnail",
+    value: function renderThumbnail(index, cake) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Thumbnail_js__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        cake: cake,
+        key: 'thumbnail' + index
+      }) //react component
+      ;
+    } // render extra component for the array
+
+  }, {
+    key: "renderAdd",
+    value: function renderAdd() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-6 col-sm-4 col-md-3 col-lg-2 square thumbnail-add",
+        onClick: this.redirect,
+        key: "thumbnailadd"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title"
+      }, "add a cake"));
+    }
+  }, {
+    key: "redirect",
+    value: function redirect() {
+      window.location.href = "/cakes/new";
     }
   }, {
     key: "render",
     value: function render() {
-      var style = {};
-      style = {
-        backgroundImage: "url('" + this.state.cakeData.imageUrl + "')"
-      };
-      var divWidth = 'col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3';
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "cakeData"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "gap"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.state.cakeData.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "back",
-        className: divWidth
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "/"
-      }, "back")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "gap"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "gap"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "cakeImage",
-        style: style
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Yum factor:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "yums"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: this.state.cakeData.yumFactor >= 1 ? 'yum active' : 'yum'
-      }, "1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: this.state.cakeData.yumFactor >= 2 ? 'yum active' : 'yum'
-      }, "2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: this.state.cakeData.yumFactor >= 3 ? 'yum active' : 'yum'
-      }, "3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: this.state.cakeData.yumFactor >= 4 ? 'yum active' : 'yum'
-      }, "4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: this.state.cakeData.yumFactor >= 5 ? 'yum active' : 'yum'
-      }, "5")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "gap"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Comments:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: 'comment ' + divWidth
-      }, this.state.cakeData.comment));
+      var thumbnails = []; // I prefer for loops for their memory efficiency
+
+      for (var i = 0; i < this.state.cakesData.length; i++) {
+        // loop through all cakes obtained from the API
+        thumbnails.push(this.renderThumbnail(i, this.state.cakesData[i])); // for each render a Thumbnail react component
+      }
+
+      thumbnails.push(this.renderAdd()); // render 'add a cake' button
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "cakes"
+      }, thumbnails));
     }
   }]);
 
-  return Cake;
+  return Cakes;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
@@ -61688,10 +61693,89 @@ if (document.getElementById('header')) {
 
 /***/ }),
 
-/***/ "./resources/js/views/cake.js":
-/*!************************************!*\
-  !*** ./resources/js/views/cake.js ***!
-  \************************************/
+/***/ "./resources/js/components/Thumbnail.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/Thumbnail.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Thumbnail; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var Thumbnail =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Thumbnail, _Component);
+
+  function Thumbnail(props) {
+    var _this;
+
+    _classCallCheck(this, Thumbnail);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Thumbnail).call(this, props));
+    _this.state = {
+      cakeData: props.cake
+    };
+    _this.redirect = _this.redirect.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Thumbnail, [{
+    key: "redirect",
+    value: function redirect() {
+      window.location.href = "/cake/" + this.state.cakeData.id;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var style = {};
+      style = {
+        backgroundImage: "url('" + this.state.cakeData.imageUrl + "')"
+      };
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-6 col-sm-4 col-md-3 col-lg-2 square thumbnail",
+        style: style,
+        onClick: this.redirect
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title"
+      }, this.state.cakeData.name));
+    }
+  }]);
+
+  return Thumbnail;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/cakes.js":
+/*!*************************************!*\
+  !*** ./resources/js/views/cakes.js ***!
+  \*************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -61701,7 +61785,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_Cake__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Cake */ "./resources/js/components/Cake.js");
+/* harmony import */ var _components_Cakes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Cakes */ "./resources/js/components/Cakes.js");
 
 
 
@@ -61710,21 +61794,32 @@ __webpack_require__(/*! ../bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ../components/Header */ "./resources/js/components/Header.js");
 
-Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Cake__WEBPACK_IMPORTED_MODULE_2__["default"], {
-  apiurl: api,
-  id: id
-}), document.getElementById('cake'));
+Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Cakes__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  apiurl: api
+}), document.getElementById('cakes'));
 
 /***/ }),
 
-/***/ 1:
-/*!******************************************!*\
-  !*** multi ./resources/js/views/cake.js ***!
-  \******************************************/
+/***/ "./resources/sass/app.scss":
+/*!*********************************!*\
+  !*** ./resources/sass/app.scss ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 0:
+/*!*********************************************************************!*\
+  !*** multi ./resources/js/views/cakes.js ./resources/sass/app.scss ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/lukas/Projects/baking/cakes/resources/js/views/cake.js */"./resources/js/views/cake.js");
+__webpack_require__(/*! /Users/lukas/Projects/baking/cakes/resources/js/views/cakes.js */"./resources/js/views/cakes.js");
+module.exports = __webpack_require__(/*! /Users/lukas/Projects/baking/cakes/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

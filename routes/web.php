@@ -12,9 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('cakes');
 });
 
-Route::get('/cake', function () {
-    return view('cake');
+Route::get('/cake/{uri_tail}', function ($uri_tail) {
+    return view('cake')->with('uri_tail', $uri_tail);;
+});
+
+Route::get('/cakes/new', function () {
+    return view('new');
 });

@@ -3,12 +3,17 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Example Site</title>
+        <title>Cake</title>
         <link rel="stylesheet" type="text/css" href="css/app.css">
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body>
-        <div id="example"></div>
-        <script type="text/javascript" src="js/app.js"></script>
+        <div id="header"></div>
+        <div id="cakes"></div>
+        <div id='footer'></div>
+        <script type="text/javascript">
+            var api = "{{env('APIURL')}}";
+        </script>
+        <script type="text/javascript" src="js/cakes.js"></script>
     </body>
 </html>
